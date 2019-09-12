@@ -1,43 +1,40 @@
-#import <stdio.h>
-#import <math.h>
-#include <stdbool.h>
+#include<stdio.h>
 #include <stdlib.h>
+#include<conio.h>
 #include <string.h>
+
+void rmstr(char stringOne[],int strinOneLen, char stringTwo[], int stringTwoLen);
+
 int main(int argc, char* argv[])
 {
-	int slength = strnlen(argv[1]);
-	int rlength = strnlen(argv[2]);
-	char* intialString[] = argv[1];
-	char StringToRemove[] = argv[2];
-	char* finalString[slength] = rmstr(intialString,slength, StringToRemove, rlength);
-	printf("/n%s", finalString);
+	//declaring the intial string values
+	char initialString[100000];
+	char intialSecString[100000];
 
+	sscanf(argv[1], "%s", &initialString);
+	sscanf(argv[2], "%s", &intialSecString);
+	int slength = strlen(initialString);
+	int rlength = strlen(intialSecString);
+	rmstr(initialString,slength, intialSecString, rlength);
 }
 
-char* rmst(char stringOne[],int strinOneLen, char stringTwo[], int stringTwoLen)
+void rmstr(char stringOne[],int strinOneLen, char stringTwo[], int stringTwoLen)
 {
-	char* tempString[strinOneLen];
-	char tobeRemoved = stringTwo[0];
-	tempString = rmchr(stringOne, tobeRemoved);
-	for (int i = 1; i < stringTwoLen; i++)
+	char tobeRemoved;
+	int pointer = 0;
+	int comp;
+	for ( int i = 0; i < stringTwoLen; i++)
 	{
-		tobeRemoved = stringTwo[i];
-		tempString = rmchr(tempString, tobeRemoved);
-	}
-	return tempString;
-	 
-}
-char* rmchr(char string[], char removeChar)
-{
-	int stringLength = strnlen(string);
-	char* newString[stringLength];
-	int j = 0;
-	for (int i = 0; i < stringLength; i++)
-	{
-		if (string[i] != removeChar)
-		{
-			newString[j++] = s[i];
+		int k=0;
+		for(int j=0; j < strinOneLen; j++)
+		{	
+			if ( stringOne[j] == stringTwo[i])
+			{
+				stringOne[j] = stringOne [j+1];
+				pointer = j;
+			}
 		}
 	}
-	return newString;
+	stringOne[pointer] = '\0';
+	printf("%s", stringOne);
 }

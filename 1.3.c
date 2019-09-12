@@ -1,30 +1,38 @@
-#include <stdio.h>
-#include <math.h>
-#include <stdbool.h>
+#include<stdio.h>
 #include <stdlib.h>
+#include<conio.h>
 #include <string.h>
+
+void rmchr(char string[], char removeChar);
+
 int main(int argc, char* argv[])
 {
-	int slength = strnlen(argv[1]);
-	char* intialString[] = argv[1];
-	char removeChar = argv[2];
-	char* finalString[slength] = rmchr(intialString, removeChar);
-	printf("/n%s", finalString);
-
+	char initialString[10000];
+	char removeChar;
+	char temp[2];
+	sscanf(argv[1],"%s",&initialString);
+	sscanf(argv[2],"%s",&temp);
+	removeChar = temp[0];
+	int slength = strlen(initialString);
+	rmchr(argv[1], removeChar);
 	return 0;
 
 }
-char* rmchr(char string[], char removeChar)
+
+void rmchr(char string[], char removeChar)
 {
-	int stringLength = strnlen(string);
-	char * newString[stringLength];
+	char newString[1000];
+	int stringLength;
+	stringLength = strlen(string);
 	int j = 0;
 	for (int i = 0; i < stringLength; i++)
 	{
 		if (string[i] != removeChar)
 		{
-			newString[j++] = s[i];
+			newString[j] = string[i];
+			j++;
 		}
 	}
-	return newString;
+	newString[j] ='\0';
+	printf("%s", newString);
 }
