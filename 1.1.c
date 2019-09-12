@@ -24,7 +24,7 @@ int main(int argc, char* argv[]) {
 }
 int getNumOfDigits(int number)
 {
-	int numOfDigits;
+	int numOfDigits=0;
 	while (number > 0)
 	{
 		numOfDigits = numOfDigits + 1;
